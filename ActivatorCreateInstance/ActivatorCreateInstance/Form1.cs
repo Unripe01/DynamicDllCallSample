@@ -16,6 +16,11 @@ namespace ActivatorCreateInstance
 			InitializeComponent();
 		}
 
+		/// <summary>
+		/// 外部Dllの呼び出し
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void button1_Click( object sender, EventArgs e )
 		{
 			System.Reflection.Assembly asm;
@@ -24,6 +29,7 @@ namespace ActivatorCreateInstance
 				asm = System.Reflection.Assembly.LoadFrom( "DllSample.dll" );
 				Type t = asm.GetType( "DllSample.Class1" );
 				dynamic dm = Activator.CreateInstance( t );
+				//dll内部のメソッドMethod1を呼び出す
 				dm.Method1();
 			}
 			catch ( Exception ex )
